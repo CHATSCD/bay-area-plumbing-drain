@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    /* Room for the always-on sticky call bar + iPhone home indicator */
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Anywhere the number appears, it is tappable */
+  a[href^='tel:'] {
+    text-decoration-line: none;
+  }
+
+  :focus-visible {
+    outline: 3px solid theme('colors.brass.400');
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-tight {
+    @apply mx-auto w-full max-w-xl px-4 sm:max-w-2xl sm:px-6 lg:max-w-5xl;
+  }
+
+  .section {
+    @apply scroll-mt-16 py-9 sm:py-14 md:scroll-mt-20;
+  }
+
+  /* Primary conversion button — brass on royal blue, hard to miss, hard to miss-tap */
+  .btn-brass {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-brass-300 to-brass-500 text-center font-extrabold text-royal-950 shadow-cta ring-1 ring-inset ring-white/50 transition-transform duration-150 active:scale-[0.985] hover:from-brass-200 hover:to-brass-400;
+  }
+
+  .btn-royal {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-2xl bg-royal-800 px-4 py-3 font-bold text-white transition-colors hover:bg-royal-700;
+  }
+
+  .btn-ghost-light {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-2xl border border-white/30 bg-white/5 font-semibold text-white transition-colors hover:bg-white/10;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide sm:text-xs;
+  }
+
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-card;
+  }
+
+  .h2 {
+    @apply text-[26px] font-black leading-[1.15] tracking-tight text-royal-950 sm:text-3xl;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-extrabold uppercase tracking-[0.14em] text-brass-600;
+  }
+
+  .body-copy {
+    @apply text-[15px] leading-relaxed text-slate-600 sm:text-base;
+  }
+}
